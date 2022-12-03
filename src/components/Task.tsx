@@ -7,18 +7,25 @@ import {task} from "../App"
 export interface Props{
     task:task,
     onDelete:(id:number) => void,
-    onToggle:(id:number) => void
+    onCompleted:(id:number) => void
 }
 
-const Task = ({task,onDelete,onToggle}:Props) => {
+const Task = ({task,onDelete,onCompleted}:Props) => {
   return (
-    <div className={`bg-slate-200 m-1 py-2 px-5 cursor-pointer ${task.reminder ? 'border-l-4 border-green-600' : ''}`} onDoubleClick={() => onToggle(task.id)}>
-        <h3 className="flex align-middle justify-between">
-            {task.text}
-            <FaTimes style={{color:"red",cursor:"pointer"}} onClick={() => onDelete(task.id)}/>
-        </h3>
-        <p>{task.day}</p>
-    </div>
+    <>
+      <div className="flex">
+        <button onClick={() => onCompleted(task.id)} className={`border-2 border-gray-400 w-4 h-4 m-auto ${task.completed? 'bg-red-500':''}`}></button>
+        <div className="bg-slate-200 m-1 py-2 px-5 cursor-pointer flex-1">   
+              <section>
+                <h3 className="flex align-middle justify-between">
+                    <span className={`${task.completed?'line-through text-slate-400':''}`}>{task.text}</span>
+                    <FaTimes style={{color:"red",cursor:"pointer"}} onClick={() => onDelete(task.id)}/>
+                </h3>
+              </section>
+        </div>
+      </div>
+    </>
+
   )
 }
 

@@ -7,14 +7,14 @@ import Task from "./Task"
 export interface Props{
     tasks:task[],
     onDelete:(id:number) => void,
-    onToggle:(id:number) => void
+    onCompleted:(id:number) => void
 }
 
-const Tasks = ({tasks,onDelete,onToggle}:Props) => {
+const Tasks = ({tasks,onDelete,onCompleted}:Props) => {
   return (
     <>
         {tasks.map((task:task) => (
-          <Task key={task.id} task={task} onDelete={onDelete} onToggle={onToggle}/>
+          <Task key={task.id} task={task} onCompleted={onCompleted} onDelete={onDelete}/>
         ))}
     </>
   )
