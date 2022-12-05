@@ -1,7 +1,7 @@
 export interface Props{
     text:string,
     color?:string,
-    onAdd:() => void
+    onAdd?:() => void
 }
 const Button = ({onAdd,text,color = 'steelblue'}:Props) => {
   return (
