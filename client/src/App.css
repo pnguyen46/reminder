@@ -649,16 +649,8 @@ html {
   width: 1rem;
 }
 
-.w-20 {
-  width: 5rem;
-}
-
 .w-80 {
   width: 20rem;
-}
-
-.w-72 {
-  width: 18rem;
 }
 
 .max-w-lg {
@@ -734,10 +726,6 @@ html {
   padding: 2rem;
 }
 
-.p-5 {
-  padding: 1.25rem;
-}
-
 .p-1 {
   padding: 0.25rem;
 }
@@ -795,14 +783,14 @@ html {
   color: rgb(148 163 184 / var(--tw-text-opacity));
 }
 
-.text-red-600 {
-  --tw-text-opacity: 1;
-  color: rgb(220 38 38 / var(--tw-text-opacity));
-}
-
 .text-green-500 {
   --tw-text-opacity: 1;
   color: rgb(34 197 94 / var(--tw-text-opacity));
+}
+
+.text-red-600 {
+  --tw-text-opacity: 1;
+  color: rgb(220 38 38 / var(--tw-text-opacity));
 }
 
 .line-through {
