@@ -1,11 +1,11 @@
-export interface Props{
-    text:string,
-    color?:string,
-    onAdd?:() => void
+export interface Props {
+  text: string,
+  color?: string,
+  onAdd?: () => void
 }
-const Button = ({onAdd,text,color = 'steelblue'}:Props) => {
+const Button = ({ onAdd, text, color = 'steelblue' }: Props) => {
   return (
-    <button onClick={onAdd} style={{backgroundColor:color}} className="btn">{text}</button>
+    <button onClick={onAdd} style={{ backgroundColor: color }} className="btn">{text}</button>
   )
 }
 
