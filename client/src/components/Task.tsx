@@ -3,7 +3,7 @@ import { useState } from "react"
 import {FaTimes,FaPencilAlt,FaTrash,FaCheck} from "react-icons/fa"
 
 //Import interface
-import {task} from "../App"
+import { task } from "../pages/Home"
 
 //Interface
 export interface Props{

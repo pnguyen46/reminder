@@ -1,5 +1,5 @@
 //Import interface
-import {task} from "../App"
+import {task} from "../pages/Home"
 
 //Components
 import Task from "./Task"
