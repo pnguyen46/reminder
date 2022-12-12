@@ -1,12 +1,29 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { useToken } from "../auth/useToken";
 
 const LoginPage = () => {
+  const [token, setToken] = useToken();
   const [error, setError] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const onLoginClicked = () => {
-    console.log("Hello World!");
+  const onLoginClicked = async () => {
+    try {
+      const response = await axios.post("/api/login", {
+        email,
+        password,
+      })
+      const { token } = response.data;
+      setToken(token);
+      redirectTo("/");
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        setError("Username or Password is incorrect");
+        setTimeout(() => setError(""), 3000);
+      }
+    }
+
   };
   const redirectTo = useNavigate();
   return (
