@@ -11,14 +11,13 @@ exports.signUp = async (req, res) => {
 
   const passwordHash = await bcrypt.hash(password, 10);
   const startingInfo = {
-    name: "",
-    age: "",
-    dob: "",
+    text: "",
+    completed: false,
   };
 
   const result = await User.create({
     email,
-    passwordHash,
+    password: passwordHash,
     info: startingInfo,
     isVerified: false,
   });
@@ -43,4 +42,34 @@ exports.signUp = async (req, res) => {
       return res.status(200).json({ token });
     }
   );
+};
+
+exports.login = async (req, res) => {
+  const { email, password } = req.body;
+
+  const user = await User.findOne({ email });
+
+  if (!user) {
+    return res.sendStatus(401);
+  }
+
+  const { _id: id, isVerified, password: passwordHash, info } = user;
+  const isCorrect = await bcrypt.compare(password, passwordHash);
+  if (isCorrect) {
+    jwt.sign(
+      { id, isVerified, email, info },
+      process.env.JWT_SECRET,
+      {
+        expiresIn: "2d",
+      },
+      (error, token) => {
+        if (error) {
+          return res.status(500).json(error);
+        }
+        res.status(200).json({ token });
+      }
+    );
+  } else {
+    res.sendStatus(401);
+  }
 };

@@ -33,7 +33,7 @@ const SignupPage = () => {
                     className="login border-2 border-black"
                     type="password"
                     value={confirmPassword}
-                    onChange={(e) => setPassword(e.target.value)}
+                    onChange={(e) => setConfirmPassword(e.target.value)}
                     placeholder="confirm password"
                 />
                 <hr className="my-8" />
