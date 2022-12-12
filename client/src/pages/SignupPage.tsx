@@ -1,13 +1,22 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { useToken } from "../auth/useToken";
 
 const SignupPage = () => {
+    const [token, setToken] = useToken();
     const [error, setError] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
-    const onSignUpClicked = () => {
-        console.log("Implement sign up");
+    const onSignUpClicked = async () => {
+        const response = await axios.post('/api/signup', {
+            email,
+            password,
+        });
+        const { token } = response.data;
+        setToken(token)
+        redirectTo("/")
     };
     const redirectTo = useNavigate();
     return (

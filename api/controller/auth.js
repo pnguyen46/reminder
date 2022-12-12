@@ -10,15 +10,10 @@ exports.signUp = async (req, res) => {
   }
 
   const passwordHash = await bcrypt.hash(password, 10);
-  const startingInfo = {
-    text: "",
-    completed: false,
-  };
 
   const result = await User.create({
     email,
     password: passwordHash,
-    info: startingInfo,
     isVerified: false,
   });
 
@@ -28,7 +23,6 @@ exports.signUp = async (req, res) => {
     {
       id: insertedId,
       email,
-      info: startingInfo,
       isVerified: false,
     },
     process.env.JWT_SECRET,
@@ -53,11 +47,11 @@ exports.login = async (req, res) => {
     return res.sendStatus(401);
   }
 
-  const { _id: id, isVerified, password: passwordHash, info } = user;
+  const { _id: id, isVerified, password: passwordHash } = user;
   const isCorrect = await bcrypt.compare(password, passwordHash);
   if (isCorrect) {
     jwt.sign(
-      { id, isVerified, email, info },
+      { id, isVerified, email },
       process.env.JWT_SECRET,
       {
         expiresIn: "2d",
