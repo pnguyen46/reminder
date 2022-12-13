@@ -1,4 +1,7 @@
 import {useState} from "react"
+import axios from "axios";
+import { useUser } from "../auth/useUser";
+
 
 //components
 import Header from '../components/Header';
@@ -7,8 +10,6 @@ import AddTask from "../components/AddTask";
 
 //interface
 import { newTask } from "../components/AddTask";
-
-
 export interface task{
   id:number,
   text:string,
@@ -16,7 +17,8 @@ export interface task{
 }
 
 const Home = () => {
-    const [tasks,setTasks] = useState<task[]>(
+    const user = useUser();
+    const [tasks,setTasks] = useState(
         [
             {
                 id:1,
@@ -36,13 +38,16 @@ const Home = () => {
         ]
       )
       const [addTask,setAddTask] = useState<boolean>(false);
-    
+
       
       // handlers
-      const createTask = (inputTask:newTask):void => {
-        const id:number = Math.floor(Math.random() * 10000) + 1;
-        const newTask:task = {id,...inputTask};
-        setTasks([...tasks,newTask])
+      const createTask = async (inputTask:string) => {
+        const response = await axios.post('/api/todo',{
+          user:user?.id,
+          text:inputTask
+        });
+        const {text,completed,_id:id} = response.data;
+        setTasks([...tasks,{text,completed,id}])
       }
     
     

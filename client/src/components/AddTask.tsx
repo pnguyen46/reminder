@@ -2,11 +2,10 @@ import { ChangeEvent, FormEvent, useState } from "react"
 
 export interface newTask{
   text:string,
-  completed:boolean
 }
 
 export interface Props{
-  makeTask:({text}:newTask) => void
+  makeTask:(text:string) => void
 }
 
 const AddTask = ({makeTask}:Props) => {
@@ -19,7 +18,7 @@ const AddTask = ({makeTask}:Props) => {
       alert("Please enter a task");
       return;
     }
-    makeTask({text,completed:false});
+    makeTask(text);
     setText('');
   }
   return (
