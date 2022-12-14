@@ -23,6 +23,20 @@ module.exports = {
       console.log(err);
     }
   },
+  updateTodo: async (req, res) => {
+    console.log(req.body);
+    const { id, text } = req.body;
+    try {
+      const updatedTask = await Todo.findByIdAndUpdate(
+        id,
+        { $set: { text } },
+        { returnDocument: "after" }
+      );
+      res.status(200).json(updatedTask);
+    } catch (error) {
+      console.error(error);
+    }
+  },
   updateComplete: async (req, res) => {
     const { id, complete } = req.body;
     try {
