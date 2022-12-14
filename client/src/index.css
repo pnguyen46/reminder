@@ -55,6 +55,9 @@
     margin-bottom: 8px;
     padding: 16px;
     text-align: center;
-}
+  }
+  #saveTask {
+    background-color: green !important;
+  }
 
 }
