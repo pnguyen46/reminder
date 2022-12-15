@@ -16,12 +16,19 @@ export interface Props {
 const Task = ({ task, onDelete, onCompleted, onEdit }: Props) => {
   const [edit, setEdit] = useState<boolean>(false);
   const [taskInput, setTaskInput] = useState<string>(task.text);
+  const [error, setError] = useState("");
   const submitNewTask = (id: string, text: string) => {
-    onEdit(id, text);
-    setEdit(!edit);
+    if(!text){
+      setError("Task cannot be empty");
+      setTimeout(() => setError(""), 3000);
+    }else{
+      onEdit(id, text);
+      setEdit(!edit);
+    }
   }
   return (
     <>
+      {error && <div className="fail">{error}</div>}
       <div className="flex">
         {edit ? "" : <button onClick={() => onCompleted(task._id)} className={`border-2 border-gray-400 w-4 h-4 m-auto ${task.completed ? 'bg-red-500' : ''}`}></button>}
         <div className="bg-slate-200 m-1 py-2 px-5 cursor-pointer flex-1">

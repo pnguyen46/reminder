@@ -10,19 +10,20 @@ export interface Props{
 
 const AddTask = ({makeTask}:Props) => {
   const [text,setText] = useState<string>('');
-  
+  const [error, setError] = useState("");
 
   const submitTask = (event:FormEvent<HTMLFormElement>):void => {
     event.preventDefault();
     if(!text){
-      alert("Please enter a task");
-      return;
+      setError("Please enter a task");
+      setTimeout(() => setError(""), 3000);
     }
     makeTask(text);
     setText('');
   }
   return (
     <form action="" className="mb-10" onSubmit={submitTask}>
+      {error && <div className="fail">{error}</div>}
         <div className="my-5 mx-0">
             <label htmlFor="task" className="block">Task</label>
             <input value={text} onChange={(event:ChangeEvent<HTMLInputElement>):void => setText(event.target.value)} type="text" placeholder="Add Task" id="task" className="w-full h-10 m-1 py-1 px-2 text-base border-2 border-gray-400" />
