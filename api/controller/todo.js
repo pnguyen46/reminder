@@ -24,7 +24,6 @@ module.exports = {
     }
   },
   updateTodo: async (req, res) => {
-    console.log(req.body);
     const { id, text } = req.body;
     try {
       const updatedTask = await Todo.findByIdAndUpdate(
