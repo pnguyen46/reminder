@@ -32,13 +32,13 @@ const Home = () => {
 
   // handlers
   const fetchTasks = async () => {
-    const response = await axios.get(`/api/todos/${user?.id}`);
+    const response = await axios.get(`https://reminder-api-syhx.onrender.com/api/todos/${user?.id}`);
     const data = response.data;
     return data;
   }
 
   const createTask = async (inputTask: string) => {
-    const response = await axios.post('/api/todo', {
+    const response = await axios.post('https://reminder-api-syhx.onrender.com/api/todo', {
       user: user?.id,
       text: inputTask
     });
@@ -48,12 +48,12 @@ const Home = () => {
 
 
   const deleteTask = async (id: string) => {
-    await axios.delete(`/api/todos/${id}`);
+    await axios.delete(`https://reminder-api-syhx.onrender.com/api/todos/${id}`);
     setTasks(tasks.filter(task => task._id !== id));
   }
 
   const editTask = async (id: string, text: string) => {
-    const response = await axios.put('/api/updateTodo', {
+    const response = await axios.put('https://reminder-api-syhx.onrender.com/api/updateTodo', {
       id,
       text
     });
@@ -70,7 +70,7 @@ const Home = () => {
 
   const toggleComplete = async (id: string) => {
     const task = tasks.find(task => task._id === id);
-    const response = await axios.put('/api/completed', {
+    const response = await axios.put('https://reminder-api-syhx.onrender.com/api/completed', {
       id,
       complete: !task?.completed
     });

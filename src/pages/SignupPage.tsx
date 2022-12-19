@@ -10,7 +10,7 @@ const SignupPage = () => {
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     const onSignUpClicked = async () => {
-        const response = await axios.post('/api/signup', {
+        const response = await axios.post('https://reminder-api-syhx.onrender.com/api/signup', {
             email,
             password,
         });

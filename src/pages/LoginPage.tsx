@@ -10,7 +10,7 @@ const LoginPage = () => {
   const [password, setPassword] = useState("");
   const onLoginClicked = async () => {
     try {
-      const response = await axios.post("/api/login", {
+      const response = await axios.post("https://reminder-api-syhx.onrender.com/api/login", {
         email,
         password,
       })
