@@ -1,8 +1,11 @@
 const express = require("express");
 const app = express();
 const logger = require("morgan");
+const cors = require('cors');
 const connectDB = require("./config/database");
 const mainRoute = require("./routes/main");
+
+app.use(cors());
 //Use .env file in config folder
 require("dotenv").config({ path: "./config/.env" });
 
