@@ -9,7 +9,7 @@ export const useUser = () => {
     const [token] = useToken();
     const getPayloadFromToken = (token: string):tokenData => {
         const encodedPayload: string = token.split(".")[1];
-        return JSON.parse(Buffer.from(encodedPayload,'base64').toString('ascii'));
+        return JSON.parse(window.atob(encodedPayload));
     }
 
     const [user, setUser] = useState(() => {
