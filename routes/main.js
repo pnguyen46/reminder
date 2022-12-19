@@ -3,6 +3,9 @@ const router = express.Router();
 const authController = require("../controller/auth");
 const todoController = require("../controller/todo");
 
+router.get('/',(req,res) => {
+    res.send("Hello!");
+})
 router.get("/todos/:userId", todoController.retrieveTasks);
 router.post("/signup", authController.signUp);
 router.post("/login", authController.login);
