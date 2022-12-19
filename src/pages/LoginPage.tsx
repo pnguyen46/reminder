@@ -14,6 +14,7 @@ const LoginPage = () => {
         email,
         password,
       })
+      console.log(response);
       const { token } = response.data;
       setToken(token);
       redirectTo("/");
