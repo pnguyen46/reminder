@@ -87,7 +87,7 @@ const Home = () => {
     <>
       <Navbar/>
       <div className="max-w-lg my-8 mx-auto overflow-auto min-h-300 border border-blue-800 p-8 rounded-md bg-white">
-        <Header title='Todo List' addTask={addTask} onAdd={(): void => setAddTask(!addTask)} />
+        <Header title='Todo:' addTask={addTask} onAdd={(): void => setAddTask(!addTask)} />
         {addTask && (<AddTask makeTask={createTask} />)}
         {tasks.length > 0 ? <Tasks tasks={tasks} onDelete={deleteTask} onCompleted={toggleComplete} onEdit={editTask} /> : 'Add Tasks'}
       </div>
